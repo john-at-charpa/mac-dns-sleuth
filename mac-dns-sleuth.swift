@@ -961,16 +961,11 @@ class AppDelegate:
             keyEquivalent: "a"
         )
 
-        let helpMenuItem = NSMenuItem(
-            title: "Help",
-            action: nil,
-            keyEquivalent: ""
-        )
+        let helpMenu = NSMenu(title: "Help")
 
-        mainMenu.addItem(helpMenuItem)
-
-        let helpMenu = NSMenu()
+        let helpMenuItem = NSMenuItem()
         helpMenuItem.submenu = helpMenu
+        mainMenu.addItem(helpMenuItem)
 
         helpMenu.addItem(
             withTitle: "Mac DNS Sleuth Help",
@@ -985,6 +980,7 @@ class AppDelegate:
         )
 
         NSApp.mainMenu = mainMenu
+        NSApp.helpMenu = helpMenu
 
         window = NSWindow(
             contentRect: NSRect(
