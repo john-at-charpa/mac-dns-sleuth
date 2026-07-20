@@ -226,6 +226,24 @@ application.
 - Python
 - checkdmarc
 
+## macOS Gatekeeper
+
+The Mac DNS Sleuth binary builds are currently distributed as unsigned 
+applications. Due to this, macOS Gatekeeper may prevent them from launching.
+
+If you prefer to use the binaries instead of compiling from source, then 
+you can optionally remove the quarantine attribute before running it:
+
+```sh
+xattr -rd com.apple.quarantine "Mac DNS Sleuth.app"
+```
+
+If it still won't launch, then you can clear all extended attributes:
+
+```sh
+xattr -cr "Mac DNS Sleuth.app"
+```
+
 ## License
 
 Licensed under the BSD 3-Clause License.
