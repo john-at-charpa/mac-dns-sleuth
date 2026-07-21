@@ -35,6 +35,16 @@ build.sh [-abchmpu]
 	exit 1
 }
 
+check_python()
+{
+	python3 -c '
+import sys
+print("Python", ".".join(map(str, sys.version_info[:3])))
+sys.exit(0 if sys.version_info >= (3, 10) else 1)
+'
+}
+
+
 # try to set the architecture type
 get_arch()
 {
@@ -125,6 +135,8 @@ build_main()
 build_helper()
 {
 	echo "Building python helper application"
+	pyver=$(check_python) ||
+		error "Python 3.10 required by found: $pyver"
 	(
 		$partial && cleanup "$workdir"
 		cd "$workdir" || error "Cannot enter $workdir"
